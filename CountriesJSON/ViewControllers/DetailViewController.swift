@@ -9,11 +9,29 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    @IBOutlet var flagImage: UIImageView!
+    @IBOutlet var descriptionLabel: UILabel!
+    
+    var country: Country!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        configure()
     }
 
 
 }
+
+extension DetailViewController {
+    func configure() {
+        descriptionLabel.text = country.description
+        DispatchQueue.global().async {
+            guard let url = URL(string: self.country.flags?.png ?? "") else { return }
+            guard let imageData = try? Data(contentsOf: url) else { return }
+            DispatchQueue.main.async {
+                self.flagImage.image = UIImage(data: imageData)
+            }
+        }
+    }
+}
+
 

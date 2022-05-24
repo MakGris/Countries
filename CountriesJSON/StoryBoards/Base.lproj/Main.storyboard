@@ -97,6 +97,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jcc-n5-2BR"/>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="N7M-cE-WJp" id="C6u-7Z-Y9u"/>
+                        <outlet property="flagImage" destination="md1-UI-luN" id="MX0-HX-AWi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gph-KT-4Bf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -108,7 +112,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yvA-Ji-XhU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MgA-eb-A7j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

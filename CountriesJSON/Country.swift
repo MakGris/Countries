@@ -17,12 +17,22 @@ struct Country: Decodable {
     let flags: Flag?
     var description: String {
         """
-Capital: \(capital?[0] ?? "")
-Languages: \(String(describing: languages?.values))
+Capital: \(capital?[0] ?? "Capital")
+Languages:\(languages?.values.description ?? "")
 Area: \(area ?? 0) m²
 Population: \(population ?? 0)
-Currency:
+Currency: \(currencies?.values.description ?? "")
 """
+    }
+    private func convert() -> [String] {
+        if let languages = languages {
+            let languagesArray = Array(languages.values)
+            return languagesArray
+        } else {
+            return ["language unknown"]
+        }
+        
+
     }
 }
 
@@ -39,3 +49,4 @@ struct Flag: Decodable {
     let png: String?
     let svg: String?
 }
+
