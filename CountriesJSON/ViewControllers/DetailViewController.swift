@@ -13,6 +13,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var descriptionLabel: UILabel!
     
     var country: Country!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()

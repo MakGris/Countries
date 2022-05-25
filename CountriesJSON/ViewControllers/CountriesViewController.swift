@@ -9,9 +9,9 @@ import UIKit
 
 class CountriesViewController: UITableViewController {
     
-    let url = "https://restcountries.com/v3.1/all"
-    var countries: [Country] = []
-    var image: UIImage!
+    private let url = "https://restcountries.com/v3.1/all"
+    private var countries: [Country] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCountries()
@@ -20,11 +20,9 @@ class CountriesViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         countries.count
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "country", for: indexPath) as! CountryCell
@@ -33,15 +31,6 @@ class CountriesViewController: UITableViewController {
         return cell
     }
         
-        
-        
-       
-    
-    
-    
-    
-    
-    
      // MARK: - Navigation
      
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,12 +39,11 @@ class CountriesViewController: UITableViewController {
          let country = countries[indexPath.row]
          detailVC.country = country
      }
-    
-    
-    
 }
+
+//MARK: Private Methods
 extension CountriesViewController {
-    func fetchCountries() {
+    private func fetchCountries() {
         guard let url = URL(string: url) else { return }
         
         URLSession.shared.dataTask(with: url) { data, _, error in
