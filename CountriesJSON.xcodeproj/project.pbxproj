@@ -17,6 +17,7 @@
 		D59A3D16283BA15200D74EBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59A3D14283BA15200D74EBB /* Main.storyboard */; };
 		D59A3D18283BA15300D74EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59A3D17283BA15300D74EBB /* Assets.xcassets */; };
 		D59A3D1B283BA15300D74EBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59A3D19283BA15300D74EBB /* LaunchScreen.storyboard */; };
+		D5C7C84D283E46B5008D5D2C /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C7C84C283E46B5008D5D2C /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		D59A3D17283BA15300D74EBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D59A3D1A283BA15300D74EBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D59A3D1C283BA15300D74EBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D5C7C84C283E46B5008D5D2C /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				D54AF89E283BABCF00514BE7 /* StoryBoards */,
 				D54AF8A0283BAC1000514BE7 /* Resources */,
 				D54AF89B283BAB9A00514BE7 /* .gitignore */,
+				D5C7C84C283E46B5008D5D2C /* NetworkManager.swift */,
 			);
 			path = CountriesJSON;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				D59A3D13283BA15200D74EBB /* DetailViewController.swift in Sources */,
 				D59A3D0F283BA15200D74EBB /* AppDelegate.swift in Sources */,
 				D583BD43283D11EC00096A87 /* CountryCell.swift in Sources */,
+				D5C7C84D283E46B5008D5D2C /* NetworkManager.swift in Sources */,
 				D59A3D11283BA15200D74EBB /* SceneDelegate.swift in Sources */,
 				D54AF8A2283BAFB000514BE7 /* Country.swift in Sources */,
 				D54AF89A283BAA4900514BE7 /* CountriesViewController.swift in Sources */,

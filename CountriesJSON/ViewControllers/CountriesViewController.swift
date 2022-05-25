@@ -10,7 +10,7 @@ import UIKit
 class CountriesViewController: UITableViewController {
     
     private let url = "https://restcountries.com/v3.1/all"
-    private var countries: [Country] = []
+    private var fetchedCountries: [Country] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +21,12 @@ class CountriesViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        countries.count
+        fetchedCountries.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "country", for: indexPath) as! CountryCell
-        let country = countries[indexPath.row]
+        let country = fetchedCountries[indexPath.row]
         cell.configure(with: country)
         return cell
     }
@@ -36,7 +36,7 @@ class CountriesViewController: UITableViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          guard let detailVC = segue.destination as? DetailViewController else { return }
          guard let indexPath = tableView.indexPathForSelectedRow else { return }
-         let country = countries[indexPath.row]
+         let country = fetchedCountries[indexPath.row]
          detailVC.country = country
      }
 }
@@ -44,23 +44,16 @@ class CountriesViewController: UITableViewController {
 //MARK: Private Methods
 extension CountriesViewController {
     private func fetchCountries() {
-        guard let url = URL(string: url) else { return }
-        
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                return
-            }
-            
-            do {
-                self.countries = try JSONDecoder().decode([Country].self, from: data)
+        NetworkManager.shared.fetchCountries { result in
+            switch result {
+            case .success(let countries):
+                self.fetchedCountries = countries
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-            } catch let error {
+            case .failure(let error):
                 print(error)
             }
-            
-        }.resume()
+        }
     }
 }
