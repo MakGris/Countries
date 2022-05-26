@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum NetworkError: Error {
     case badURL
@@ -41,5 +42,20 @@ struct NetworkManager {
             }
 
         }.resume()
+    }
+    func fetchFlag(with country: Country, completionHandler: @escaping(Result <Data, NetworkError>) -> Void ) {
+        DispatchQueue.global().async {
+            guard let url = URL(string: country.flags?.png ?? "") else {
+                completionHandler(.failure(.badURL))
+                return
+                
+            }
+            if let imageData = try? Data(contentsOf: url){
+                completionHandler(.success(imageData))
+            } else {
+                completionHandler(.failure(.invalidData))
+                return
+            }
+        }
     }
 }

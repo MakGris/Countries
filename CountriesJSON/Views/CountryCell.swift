@@ -8,17 +8,21 @@
 import UIKit
 
 class CountryCell: UITableViewCell {
-    @IBOutlet var flagImageOutlet: UIImageView!
+//    MARK: IB Outlets
+    @IBOutlet var flagImage: UIImageView!
     @IBOutlet var countryNameLabel: UILabel!
     
-    
-    func configure(with country: Country) {
+//MARK: Methods
+    func configureCell(with country: Country) {
         countryNameLabel.text = country.name?.official
-        DispatchQueue.global().async {
-            guard let url = URL(string: country.flags?.png ?? "") else { return }
-            guard let imageData = try? Data(contentsOf: url) else { return }
-            DispatchQueue.main.async {
-                self.flagImageOutlet.image = UIImage(data: imageData)
+        NetworkManager.shared.fetchFlag(with: country) { result in
+            switch result {
+            case .success(let imageData):
+                DispatchQueue.main.async {
+                    self.flagImage.image = UIImage(data: imageData)
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }

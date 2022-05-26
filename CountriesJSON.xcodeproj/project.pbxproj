@@ -63,6 +63,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		D511E6D0283F277100A5FA38 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D5C7C84C283E46B5008D5D2C /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		D54AF89D283BABC000514BE7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,13 +127,13 @@
 			isa = PBXGroup;
 			children = (
 				D54AF89F283BABE400514BE7 /* App */,
+				D511E6D0283F277100A5FA38 /* Network */,
 				D511E6CF283DE0DF00A5FA38 /* Model */,
 				D511E6CE283DE0CF00A5FA38 /* Views */,
 				D54AF89D283BABC000514BE7 /* ViewControllers */,
 				D54AF89E283BABCF00514BE7 /* StoryBoards */,
 				D54AF8A0283BAC1000514BE7 /* Resources */,
 				D54AF89B283BAB9A00514BE7 /* .gitignore */,
-				D5C7C84C283E46B5008D5D2C /* NetworkManager.swift */,
 			);
 			path = CountriesJSON;
 			sourceTree = "<group>";

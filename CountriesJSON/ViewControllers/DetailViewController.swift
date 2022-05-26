@@ -8,28 +8,33 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
+//MARK: IB Outlets
     @IBOutlet var flagImage: UIImageView!
     @IBOutlet var descriptionLabel: UILabel!
     
+//MARK: Public properties
     var country: Country!
     
+//MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        configureDetailController()
     }
-
-
 }
 
+//MARK: Private Methods
 extension DetailViewController {
-    func configure() {
+    private func configureDetailController() {
         descriptionLabel.text = country.description
-        DispatchQueue.global().async {
-            guard let url = URL(string: self.country.flags?.png ?? "") else { return }
-            guard let imageData = try? Data(contentsOf: url) else { return }
-            DispatchQueue.main.async {
-                self.flagImage.image = UIImage(data: imageData)
+        NetworkManager.shared.fetchFlag(with: country) { result in
+            switch result {
+            case .success(let imageData):
+                DispatchQueue.main.async {
+                    self.flagImage.image = UIImage(data: imageData)
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }

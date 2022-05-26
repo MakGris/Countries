@@ -34,8 +34,6 @@ Currency symbol: \(convertSymbols())
         } else {
             return "language unknown"
         }
-        
-
     }
     
     private func convertCurrencies() -> String {
@@ -47,8 +45,6 @@ Currency symbol: \(convertSymbols())
                 currenciesArray.append(currency ?? "currency unknown")
                 currenciesString = currenciesArray.joined(separator: ", ")
             }
-            
-    
         }
         return currenciesString
     }
@@ -61,12 +57,9 @@ Currency symbol: \(convertSymbols())
                 symbolsArray.append(symbol ?? "currency symbol unknown")
                 symbolsString = symbolsArray.joined(separator: ", ")
             }
-            
-    
         }
         return symbolsString
     }
-    
 }
 
 struct Name: Decodable {

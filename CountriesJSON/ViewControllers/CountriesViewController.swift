@@ -9,13 +9,14 @@ import UIKit
 
 class CountriesViewController: UITableViewController {
     
-    private let url = "https://restcountries.com/v3.1/all"
+//    MARK: Private Properties
     private var fetchedCountries: [Country] = []
     
+//    MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchCountries()
-        tableView.rowHeight = 80
+        configureTableVIewController()
+        
     }
     
     // MARK: - Table view data source
@@ -27,7 +28,7 @@ class CountriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "country", for: indexPath) as! CountryCell
         let country = fetchedCountries[indexPath.row]
-        cell.configure(with: country)
+        cell.configureCell(with: country)
         return cell
     }
         
@@ -43,7 +44,8 @@ class CountriesViewController: UITableViewController {
 
 //MARK: Private Methods
 extension CountriesViewController {
-    private func fetchCountries() {
+    private func configureTableVIewController() {
+        tableView.rowHeight = 80
         NetworkManager.shared.fetchCountries { result in
             switch result {
             case .success(let countries):
