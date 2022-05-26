@@ -34,6 +34,7 @@ Currency symbol: \(convertSymbols())
         } else {
             return "language unknown"
         }
+
     }
     
     private func convertCurrencies() -> String {
@@ -42,9 +43,11 @@ Currency symbol: \(convertSymbols())
             for value in currencies.values {
                 var currenciesArray = [String]()
                 let currency = value.name
-                currenciesArray.append(currency ?? "currency unknown")
+                currenciesArray.append(currency ?? "")
                 currenciesString = currenciesArray.joined(separator: ", ")
             }
+        } else {
+            currenciesString = "currency unknown"
         }
         return currenciesString
     }
@@ -54,9 +57,11 @@ Currency symbol: \(convertSymbols())
             for value in currencies.values {
                 var symbolsArray = [String]()
                 let symbol = value.symbol
-                symbolsArray.append(symbol ?? "currency symbol unknown")
+                symbolsArray.append(symbol ?? "")
                 symbolsString = symbolsArray.joined(separator: ", ")
             }
+        } else {
+            symbolsString = "currency symbol unknown"
         }
         return symbolsString
     }
