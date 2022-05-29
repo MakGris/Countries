@@ -6,16 +6,19 @@
 //
 
 import UIKit
+import Alamofire
 
 class CountriesViewController: UITableViewController {
     
 //    MARK: Private Properties
+    private let urlString = "https://restcountries.com/v3.1/all"
     private var fetchedCountries: [Country] = []
     
 //    MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableVIewController()
+        fetchWithAlamoFire()
         
     }
     
@@ -28,7 +31,10 @@ class CountriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "country", for: indexPath) as! CountryCell
         let country = fetchedCountries[indexPath.row]
-        cell.configureCell(with: country)
+        var content = cell.defaultContentConfiguration()
+        content.text = country.name?.official
+        cell.contentConfiguration = content
+//        cell.configureCell(with: country)
         return cell
     }
         
@@ -46,16 +52,33 @@ class CountriesViewController: UITableViewController {
 extension CountriesViewController {
     private func configureTableVIewController() {
         tableView.rowHeight = 80
-        NetworkManager.shared.fetchCountries { result in
-            switch result {
-            case .success(let countries):
-                self.fetchedCountries = countries
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+//        fetchWithAlamoFire()
+//        NetworkManager.shared.fetchCountries { result in
+//            switch result {
+//            case .success(let countries):
+//                self.fetchedCountries = countries
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
+    }
+    func fetchWithAlamoFire() {
+        AF.request(urlString)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                    
+                case .success(let value):
+                    self.fetchedCountries = Country.getCountries(from: value)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
                 }
-            case .failure(let error):
-                print(error)
             }
-        }
     }
 }

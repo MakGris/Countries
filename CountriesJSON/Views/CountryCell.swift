@@ -15,15 +15,15 @@ class CountryCell: UITableViewCell {
 //MARK: Methods
     func configureCell(with country: Country) {
         countryNameLabel.text = country.name?.official
-        NetworkManager.shared.fetchFlag(with: country) { result in
-            switch result {
-            case .success(let imageData):
-                DispatchQueue.main.async {
-                    self.flagImage.image = UIImage(data: imageData)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        NetworkManager.shared.fetchFlag(with: country) { result in
+//            switch result {
+//            case .success(let imageData):
+//                DispatchQueue.main.async {
+//                    self.flagImage.image = UIImage(data: imageData)
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
 }

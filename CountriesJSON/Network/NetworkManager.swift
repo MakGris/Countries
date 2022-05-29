@@ -35,7 +35,9 @@ struct NetworkManager {
 
             do {
                 let countries = try JSONDecoder().decode([Country].self, from: data)
-                completionHandler(.success(countries))
+                DispatchQueue.main.async {
+                    completionHandler(.success(countries))
+                }
             } catch let error {
                 print(error)
                 completionHandler(.failure(.decodeError))
@@ -51,11 +53,16 @@ struct NetworkManager {
                 
             }
             if let imageData = try? Data(contentsOf: url){
-                completionHandler(.success(imageData))
+                DispatchQueue.main.async {
+                    completionHandler(.success(imageData))
+                }
             } else {
                 completionHandler(.failure(.invalidData))
                 return
             }
         }
+    }
+    func fetchCountriesAlamoFire() {
+        
     }
 }

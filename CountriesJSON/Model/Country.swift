@@ -25,6 +25,25 @@ Currency: \(convertCurrencies())
 Currency symbol: \(convertSymbols())
 """
     }
+    init(countryData: [String: Any]) {
+    name = countryData["name"] as? Name
+    currencies = countryData["currencies"] as? [String: Currency]
+    capital = countryData["capital"] as? [String]
+    languages = countryData["languages"] as? [String: String]
+    area = countryData["area"] as? Double
+    population = countryData["population"] as? Int
+    flags = countryData["flags"] as? Flag
+    }
+    
+    static func getCountries(from value: Any) -> [Country] {
+        guard let countriesData = value as? [[String:Any]] else { return [] }
+        var countries: [Country] = []
+        for countryData in countriesData {
+            let country = Country(countryData: countryData)
+            countries.append(country)
+        }
+        return countries
+    }
     
     private func convertLanguages() -> String {
         if let languages = languages {
@@ -69,15 +88,28 @@ Currency symbol: \(convertSymbols())
 
 struct Name: Decodable {
     let official: String?
+    
+//    init(countryData: [String: Any]) {
+//        official = countryData["official"] as? String
+//    }
 }
 
 struct Currency: Decodable {
     let name: String?
     let symbol: String?
+    
+    init(countryData: [String: Any]) {
+        name = countryData["name"] as? String
+        symbol = countryData["symbol"] as? String
+    }
 }
 
 struct Flag: Decodable {
     let png: String?
     let svg: String?
+    init(countryData: [String: Any]) {
+        png = countryData["png"] as? String
+        svg = countryData["svg"] as? String
+    }
 }
 
