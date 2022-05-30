@@ -73,6 +73,7 @@ extension CountriesViewController {
                     
                 case .success(let value):
                     self.fetchedCountries = Country.getCountries(from: value)
+                    print(self.fetchedCountries)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
