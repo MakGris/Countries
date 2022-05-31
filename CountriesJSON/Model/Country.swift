@@ -9,7 +9,7 @@ import Foundation
 
 struct Country: Decodable {
     let name: Name?
-    let currencies: [String: Currency]?
+    var currencies: [Currency?]
     let capital: [String]?
     let languages: [String: String]?
     let area: Double?
@@ -18,38 +18,34 @@ struct Country: Decodable {
     var description: String {
         """
 Capital: \(capital?[0] ?? "Capital")
-Languages:\(convertLanguages())
+Languages: \(convertLanguages())
 Area: \(area ?? 0) m²
 Population: \(population ?? 0) people
 Currency: \(convertCurrencies())
 Currency symbol: \(convertSymbols())
 """
     }
-//    init(countryData: [String: Any]) {
-//    name = countryData["name"] as? Name
-//    currencies = countryData["currencies"] as? [String: Currency]
-//    capital = countryData["capital"] as? [String]
-//    languages = countryData["languages"] as? [String: String]
-//    area = countryData["area"] as? Double
-//    population = countryData["population"] as? Int
-//    flags = countryData["flags"] as? Flag
-//    }
+    init(countryData: [String: Any]) {
+        let nameData = countryData["name"] as? [String:Any] ?? [:]
+        name = Name(countryData: nameData)
+        currencies = []
+        let currenciesData = countryData["currencies"] as? [String:[String: Any]] ?? [:]
+        for key in currenciesData.keys {
+            self.currencies.append(Currency(countryData: currenciesData[key] ?? [:]))
+        }
+        capital = countryData["capital"] as? [String]
+        languages = countryData["languages"] as? [String: String]
+        area = countryData["area"] as? Double
+        population = countryData["population"] as? Int
+        let flagsData = countryData["flags"] as? [String:Any] ?? [:]
+        flags = Flag(countryData: flagsData)
+    }
     
     static func getCountries(from value: Any) -> [Country] {
         guard let countriesData = value as? [[String:Any]] else { return [] }
         var countries: [Country] = []
         for countryData in countriesData {
-            let nameFromJson = Name(countryData: countryData)
-            let currencyFromJson = Currency(countryData: countryData)
-            let flagFromJson = Flag(countryData: countryData)
-            let country = Country(
-                name: countryData["name"] as? Name,
-                currencies: countryData["currencies"] as? [String: Currency],
-                capital: countryData["capital"] as? [String],
-                languages: countryData["languages"] as? [String: String],
-                area: countryData["area"] as? Double,
-                population: countryData["population"] as? Int,
-                flags: countryData["flags"] as? Flag)
+            let country = Country(countryData: countryData)
             countries.append(country)
         }
         return countries
@@ -63,36 +59,36 @@ Currency symbol: \(convertSymbols())
         } else {
             return "language unknown"
         }
-
+        
     }
     
     private func convertCurrencies() -> String {
-        var currenciesString = ""
-        if let currencies = currencies {
-            for value in currencies.values {
-                var currenciesArray = [String]()
-                let currency = value.name
-                currenciesArray.append(currency ?? "")
-                currenciesString = currenciesArray.joined(separator: ", ")
-            }
-        } else {
-            currenciesString = "currency unknown"
+        var currenciesNamesString = ""
+        var currenciesNamesArray = [String]()
+        for currency in currencies {
+            let currencyName = currency?.name ?? ""
+            currenciesNamesArray.append(currencyName)
+            currenciesNamesString = currenciesNamesArray.joined(separator: ", ")
         }
-        return currenciesString
+        if currenciesNamesString.isEmpty {
+            currenciesNamesString = "language unknown"
+        }
+        return currenciesNamesString
+        
     }
+    
     private func convertSymbols() -> String {
-        var symbolsString = ""
-        if let currencies = currencies {
-            for value in currencies.values {
-                var symbolsArray = [String]()
-                let symbol = value.symbol
-                symbolsArray.append(symbol ?? "")
-                symbolsString = symbolsArray.joined(separator: ", ")
-            }
-        } else {
-            symbolsString = "currency symbol unknown"
+        var currenciesSymbolsString = ""
+        var currenciesSymbolsArray = [String]()
+        for currency in currencies {
+            let currencySymbol = currency?.symbol ?? ""
+            currenciesSymbolsArray.append(currencySymbol)
+            currenciesSymbolsString = currenciesSymbolsArray.joined(separator: ", ")
         }
-        return symbolsString
+        if currenciesSymbolsString.isEmpty {
+            currenciesSymbolsString = "currency symbol unknown"
+        }
+        return currenciesSymbolsString
     }
 }
 
@@ -101,10 +97,9 @@ struct Name: Decodable {
     
     init(countryData: [String: Any]) {
         official = countryData["official"] as? String
+    }
+}
 
-    }
-    }
-    
 
 
 struct Currency: Decodable {

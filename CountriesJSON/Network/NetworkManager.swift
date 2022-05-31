@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import Alamofire
 
 enum NetworkError: Error {
     case badURL
@@ -62,7 +62,20 @@ struct NetworkManager {
             }
         }
     }
-    func fetchCountriesAlamoFire() {
-        
+    func fetchWithAlamoFire() {
+        AF.request(urlString)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                    
+                case .success(let value):
+                    self.fetchedCountries = Country.getCountries(from: value)
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
     }
 }

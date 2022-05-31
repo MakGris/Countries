@@ -31,10 +31,10 @@ class CountriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "country", for: indexPath) as! CountryCell
         let country = fetchedCountries[indexPath.row]
-        var content = cell.defaultContentConfiguration()
-        content.text = country.name?.official
-        cell.contentConfiguration = content
-//        cell.configureCell(with: country)
+//        var content = cell.defaultContentConfiguration()
+//        content.text = country.name?.official
+//        cell.contentConfiguration = content
+        cell.configureCell(with: country)
         return cell
     }
         
@@ -73,7 +73,6 @@ extension CountriesViewController {
                     
                 case .success(let value):
                     self.fetchedCountries = Country.getCountries(from: value)
-                    print(self.fetchedCountries)
                     DispatchQueue.main.async {
                         self.tableView.reloadData()
                     }
