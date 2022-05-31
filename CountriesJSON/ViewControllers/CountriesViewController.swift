@@ -13,12 +13,16 @@ class CountriesViewController: UITableViewController {
 //    MARK: Private Properties
     private let urlString = "https://restcountries.com/v3.1/all"
     private var fetchedCountries: [Country] = []
+    private var spinnerView: UIActivityIndicatorView?
+    
     
 //    MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableVIewController()
         fetchWithAlamoFire()
+        
+        
         
     }
     
@@ -31,9 +35,6 @@ class CountriesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "country", for: indexPath) as! CountryCell
         let country = fetchedCountries[indexPath.row]
-//        var content = cell.defaultContentConfiguration()
-//        content.text = country.name?.official
-//        cell.contentConfiguration = content
         cell.configureCell(with: country)
         return cell
     }
@@ -52,33 +53,31 @@ class CountriesViewController: UITableViewController {
 extension CountriesViewController {
     private func configureTableVIewController() {
         tableView.rowHeight = 80
-//        fetchWithAlamoFire()
-//        NetworkManager.shared.fetchCountries { result in
-//            switch result {
-//            case .success(let countries):
-//                self.fetchedCountries = countries
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
+        tableView.separatorStyle = .none
+        spinnerView = showSpinner(in: navigationController?.view ?? tableView)
     }
-    func fetchWithAlamoFire() {
-        AF.request(urlString)
-            .validate()
-            .responseJSON { dataResponse in
-                switch dataResponse.result {
-                    
-                case .success(let value):
-                    self.fetchedCountries = Country.getCountries(from: value)
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error)
-                }
+    private func fetchWithAlamoFire() {
+        NetworkManager.shared.fetchWithAlamoFire { result in
+            switch result {
+                
+            case .success(let countries):
+                self.fetchedCountries = countries
+                self.tableView.reloadData()
+                self.spinnerView?.stopAnimating()
+            case .failure(let error):
+                print(error)
             }
+        }
+    }
+    private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .gray
+        activityIndicator.startAnimating()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        
+        view.addSubview(activityIndicator)
+        
+        return activityIndicator
     }
 }

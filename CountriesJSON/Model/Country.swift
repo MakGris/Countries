@@ -28,15 +28,21 @@ Currency symbol: \(convertSymbols())
     init(countryData: [String: Any]) {
         let nameData = countryData["name"] as? [String:Any] ?? [:]
         name = Name(countryData: nameData)
+        
         currencies = []
         let currenciesData = countryData["currencies"] as? [String:[String: Any]] ?? [:]
         for key in currenciesData.keys {
             self.currencies.append(Currency(countryData: currenciesData[key] ?? [:]))
         }
+        
         capital = countryData["capital"] as? [String]
+        
         languages = countryData["languages"] as? [String: String]
+        
         area = countryData["area"] as? Double
+        
         population = countryData["population"] as? Int
+        
         let flagsData = countryData["flags"] as? [String:Any] ?? [:]
         flags = Flag(countryData: flagsData)
     }

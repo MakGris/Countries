@@ -20,61 +20,33 @@ struct NetworkManager {
     
     private init () {}
 
-    func fetchCountries(completionHandler: @escaping(Result <[Country], NetworkError>) -> Void) {
-        guard let url = URL(string: urlString) else {
-            completionHandler(.failure(.badURL))
-            return
-        }
-
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                completionHandler(.failure(.invalidData))
-                return
-            }
-
-            do {
-                let countries = try JSONDecoder().decode([Country].self, from: data)
-                DispatchQueue.main.async {
-                    completionHandler(.success(countries))
-                }
-            } catch let error {
-                print(error)
-                completionHandler(.failure(.decodeError))
-            }
-
-        }.resume()
-    }
-    func fetchFlag(with country: Country, completionHandler: @escaping(Result <Data, NetworkError>) -> Void ) {
-        DispatchQueue.global().async {
-            guard let url = URL(string: country.flags?.png ?? "") else {
-                completionHandler(.failure(.badURL))
-                return
-                
-            }
-            if let imageData = try? Data(contentsOf: url){
-                DispatchQueue.main.async {
+    
+    func fetchFlagAlamoFire(with country: Country, completionHandler: @escaping(Result <Data, NetworkError>) -> Void ) {
+        AF.request(country.flags?.png ?? "")
+            .validate()
+            .responseData { dataResponse in
+                switch dataResponse.result {
+                    
+                case .success(let value):
+                    let imageData = value
                     completionHandler(.success(imageData))
+                case .failure:
+                    completionHandler(.failure(.invalidData))
                 }
-            } else {
-                completionHandler(.failure(.invalidData))
-                return
             }
-        }
     }
-    func fetchWithAlamoFire() {
+    func fetchWithAlamoFire(completionHandler: @escaping(Result <[Country], NetworkError>) -> Void) {
         AF.request(urlString)
             .validate()
             .responseJSON { dataResponse in
                 switch dataResponse.result {
-                    
                 case .success(let value):
-                    self.fetchedCountries = Country.getCountries(from: value)
+                    let countries = Country.getCountries(from: value)
                     DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                        completionHandler(.success(countries))
                     }
-                case .failure(let error):
-                    print(error)
+                case .failure:
+                    completionHandler(.failure(.decodeError))
                 }
             }
     }

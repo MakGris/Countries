@@ -27,8 +27,9 @@ class DetailViewController: UIViewController {
 extension DetailViewController {
     private func configureDetailController() {
         descriptionLabel.text = country.description
-        NetworkManager.shared.fetchFlag(with: country) { result in
+        NetworkManager.shared.fetchFlagAlamoFire(with: country) { result in
             switch result {
+                
             case .success(let imageData):
                 DispatchQueue.main.async {
                     self.flagImage.image = UIImage(data: imageData)
