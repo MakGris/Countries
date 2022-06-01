@@ -91,10 +91,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="md1-UI-luN">
-                                <rect key="frame" x="40" y="64" width="240" height="160"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="md1-UI-luN">
+                                <rect key="frame" x="50" y="64" width="220" height="160"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="a31-KH-0lP"/>
+                                    <constraint firstAttribute="width" constant="220" id="7aT-VZ-v4E"/>
+                                    <constraint firstAttribute="height" constant="160" id="cck-xN-HDN"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7M-cE-WJp">
@@ -107,12 +108,11 @@
                         <viewLayoutGuide key="safeArea" id="jdx-o2-8dy"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="jdx-o2-8dy" firstAttribute="trailing" secondItem="N7M-cE-WJp" secondAttribute="trailing" constant="40" id="1le-8C-l1B"/>
-                            <constraint firstItem="N7M-cE-WJp" firstAttribute="top" secondItem="md1-UI-luN" secondAttribute="bottom" constant="60" id="8qk-Jr-Izy"/>
-                            <constraint firstItem="md1-UI-luN" firstAttribute="leading" secondItem="jdx-o2-8dy" secondAttribute="leading" constant="40" id="STN-MQ-bBP"/>
-                            <constraint firstItem="N7M-cE-WJp" firstAttribute="leading" secondItem="jdx-o2-8dy" secondAttribute="leading" constant="40" id="boA-Dn-MkN"/>
-                            <constraint firstItem="md1-UI-luN" firstAttribute="top" secondItem="jdx-o2-8dy" secondAttribute="top" constant="20" id="dHb-vx-ABu"/>
-                            <constraint firstItem="jdx-o2-8dy" firstAttribute="trailing" secondItem="md1-UI-luN" secondAttribute="trailing" constant="40" id="n9g-8K-BTC"/>
+                            <constraint firstItem="N7M-cE-WJp" firstAttribute="leading" secondItem="jdx-o2-8dy" secondAttribute="leading" constant="40" id="Dac-dy-syQ"/>
+                            <constraint firstItem="md1-UI-luN" firstAttribute="top" secondItem="jdx-o2-8dy" secondAttribute="top" constant="20" id="YzV-yp-pYK"/>
+                            <constraint firstItem="jdx-o2-8dy" firstAttribute="trailing" secondItem="N7M-cE-WJp" secondAttribute="trailing" constant="40" id="qEZ-2R-uTV"/>
+                            <constraint firstItem="N7M-cE-WJp" firstAttribute="top" secondItem="md1-UI-luN" secondAttribute="bottom" constant="60" id="vCs-Lu-yag"/>
+                            <constraint firstItem="md1-UI-luN" firstAttribute="centerX" secondItem="Caw-EE-blQ" secondAttribute="centerX" id="yKQ-bd-zk3"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="jcc-n5-2BR"/>

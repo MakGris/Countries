@@ -20,7 +20,8 @@ class CountriesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableVIewController()
-        fetchWithAlamoFire()
+        fetchCountriesWithAlamoFire()
+        
         
         
         
@@ -55,15 +56,18 @@ extension CountriesViewController {
         tableView.rowHeight = 80
         tableView.separatorStyle = .none
         spinnerView = showSpinner(in: navigationController?.view ?? tableView)
+        title = "Countries App"
     }
-    private func fetchWithAlamoFire() {
+    private func fetchCountriesWithAlamoFire() {
         NetworkManager.shared.fetchWithAlamoFire { result in
             switch result {
                 
             case .success(let countries):
                 self.fetchedCountries = countries
-                self.tableView.reloadData()
-                self.spinnerView?.stopAnimating()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.spinnerView?.stopAnimating()
+                }
             case .failure(let error):
                 print(error)
             }

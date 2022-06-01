@@ -25,6 +25,7 @@ Currency: \(convertCurrencies())
 Currency symbol: \(convertSymbols())
 """
     }
+    
     init(countryData: [String: Any]) {
         let nameData = countryData["name"] as? [String:Any] ?? [:]
         name = Name(countryData: nameData)

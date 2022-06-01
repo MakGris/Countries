@@ -21,7 +21,10 @@ struct NetworkManager {
     private init () {}
 
     
-    func fetchFlagAlamoFire(with country: Country, completionHandler: @escaping(Result <Data, NetworkError>) -> Void ) {
+    func fetchFlagAlamoFire(
+        with country: Country,
+        completionHandler: @escaping(Result <Data, NetworkError>) -> Void
+    ) {
         AF.request(country.flags?.png ?? "")
             .validate()
             .responseData { dataResponse in
@@ -35,7 +38,9 @@ struct NetworkManager {
                 }
             }
     }
-    func fetchWithAlamoFire(completionHandler: @escaping(Result <[Country], NetworkError>) -> Void) {
+    func fetchWithAlamoFire(
+        completionHandler: @escaping(Result <[Country], NetworkError>) -> Void)
+    {
         AF.request(urlString)
             .validate()
             .responseJSON { dataResponse in
