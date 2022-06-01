@@ -32,7 +32,9 @@ struct NetworkManager {
                     
                 case .success(let value):
                     let imageData = value
-                    completionHandler(.success(imageData))
+                    DispatchQueue.main.async {
+                        completionHandler(.success(imageData))
+                    }
                 case .failure:
                     completionHandler(.failure(.invalidData))
                 }
