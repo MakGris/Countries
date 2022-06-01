@@ -6,16 +6,24 @@
 //
 
 import UIKit
+import Alamofire
 
 class CountriesViewController: UITableViewController {
     
 //    MARK: Private Properties
+    private let urlString = "https://restcountries.com/v3.1/all"
     private var fetchedCountries: [Country] = []
+    private var spinnerView: UIActivityIndicatorView?
+    
     
 //    MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableVIewController()
+        fetchCountriesWithAlamoFire()
+        
+        
+        
         
     }
     
@@ -46,16 +54,34 @@ class CountriesViewController: UITableViewController {
 extension CountriesViewController {
     private func configureTableVIewController() {
         tableView.rowHeight = 80
-        NetworkManager.shared.fetchCountries { result in
+        tableView.separatorStyle = .none
+        spinnerView = showSpinner(in: navigationController?.view ?? tableView)
+        title = "Countries App"
+    }
+    private func fetchCountriesWithAlamoFire() {
+        NetworkManager.shared.fetchWithAlamoFire { result in
             switch result {
+                
             case .success(let countries):
                 self.fetchedCountries = countries
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.spinnerView?.stopAnimating()
                 }
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    private func showSpinner(in view: UIView) -> UIActivityIndicatorView {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.color = .gray
+        activityIndicator.startAnimating()
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        
+        view.addSubview(activityIndicator)
+        
+        return activityIndicator
     }
 }
