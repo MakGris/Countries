@@ -21,9 +21,8 @@ class CountryCell: UITableViewCell {
             switch result {
                 
             case .success(let imageData):
-                DispatchQueue.main.async {
                     self.flagImage.image = UIImage(data: imageData)
-                }
+                
             case .failure(let error):
                 print(error)
             }
