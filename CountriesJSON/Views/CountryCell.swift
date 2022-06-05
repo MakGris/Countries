@@ -8,22 +8,28 @@
 import UIKit
 
 class CountryCell: UITableViewCell {
+    
 //    MARK: IB Outlets
-    @IBOutlet var flagImage: UIImageView!
+    @IBOutlet var flagImage: FlagImageView!
     @IBOutlet var countryNameLabel: UILabel!
     
 //MARK: Methods
     func configureCell(with country: Country) {
+        flagImage.layer.cornerRadius = 10
         countryNameLabel.text = country.name?.official
-        NetworkManager.shared.fetchFlag(with: country) { result in
-            switch result {
-            case .success(let imageData):
-                DispatchQueue.main.async {
-                    self.flagImage.image = UIImage(data: imageData)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
+//        присвоение картинки из кэша или из сети
+        flagImage.fetchImage(from: country.flags?.png ?? "")
+        
+//        метод для присвоения картинки с помощью alamofire
+//        NetworkManager.shared.fetchFlagAlamoFire(with: country) { result in
+//            switch result {
+//
+//            case .success(let imageData):
+//                    self.flagImage.image = UIImage(data: imageData)
+//
+//            case .failure(let error):
+//                print(error)
+//            }
+//        }
     }
 }

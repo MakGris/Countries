@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import Alamofire
 
 enum NetworkError: Error {
     case badURL
@@ -14,48 +14,70 @@ enum NetworkError: Error {
     case decodeError
 }
 
-struct NetworkManager {
+class NetworkManager {
     static let shared = NetworkManager()
     private let urlString = "https://restcountries.com/v3.1/all"
     
     private init () {}
 
-    func fetchCountries(completionHandler: @escaping(Result <[Country], NetworkError>) -> Void) {
-        guard let url = URL(string: urlString) else {
-            completionHandler(.failure(.badURL))
-            return
-        }
+    
+    func fetchFlagAlamoFire(
+        with country: Country,
+        completionHandler: @escaping(Result <Data, NetworkError>) -> Void
+    ) {
+        AF.request(country.flags?.png ?? "")
+            .validate()
+            .responseData { dataResponse in
+                switch dataResponse.result {
+                    
+                case .success(let value):
+                    let imageData = value
+                    DispatchQueue.main.async {
+                        completionHandler(.success(imageData))
+                    }
+                case .failure:
+                    completionHandler(.failure(.invalidData))
+                }
+            }
+    }
+    func fetchWithAlamoFire(
+        completionHandler: @escaping(Result <[Country], NetworkError>) -> Void)
+    {
+        AF.request(urlString)
+            .validate()
+            .responseJSON { dataResponse in
+                switch dataResponse.result {
+                case .success(let value):
+                    let countries = Country.getCountries(from: value)
+                    DispatchQueue.main.async {
+                        completionHandler(.success(countries))
+                    }
+                case .failure:
+                    completionHandler(.failure(.decodeError))
+                }
+            }
+    }
+//    Метод для кэша картинок
+    
+}
 
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            guard let data = data else {
-                print(error?.localizedDescription ?? "No error description")
-                completionHandler(.failure(.invalidData))
+class ImageManager {
+    static let shared = ImageManager()
+    
+    private init() {}
+    
+    func fetchFlagCacheMethod(from url: URL, completionHandler: @escaping(Data, URLResponse) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data, let response = response else {
+                print(error?.localizedDescription ?? "no error description")
                 return
             }
-
-            do {
-                let countries = try JSONDecoder().decode([Country].self, from: data)
-                completionHandler(.success(countries))
-            } catch let error {
-                print(error)
-                completionHandler(.failure(.decodeError))
+            guard url == response.url else { return }
+            DispatchQueue.main.async {
+                completionHandler(data, response)
             }
 
         }.resume()
     }
-    func fetchFlag(with country: Country, completionHandler: @escaping(Result <Data, NetworkError>) -> Void ) {
-        DispatchQueue.global().async {
-            guard let url = URL(string: country.flags?.png ?? "") else {
-                completionHandler(.failure(.badURL))
-                return
-                
-            }
-            if let imageData = try? Data(contentsOf: url){
-                completionHandler(.success(imageData))
-            } else {
-                completionHandler(.failure(.invalidData))
-                return
-            }
-        }
-    }
 }
+

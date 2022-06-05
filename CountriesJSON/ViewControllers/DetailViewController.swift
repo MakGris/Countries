@@ -10,7 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
     
 //MARK: IB Outlets
-    @IBOutlet var flagImage: UIImageView!
+    @IBOutlet var flagImage: FlagImageView!
     @IBOutlet var descriptionLabel: UILabel!
     
 //MARK: Public properties
@@ -19,20 +19,33 @@ class DetailViewController: UIViewController {
 //MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDetailController()
+        tuneUI()
+        
+        
     }
 }
 
+
 //MARK: Private Methods
 extension DetailViewController {
-    private func configureDetailController() {
+    private func tuneUI() {
         descriptionLabel.text = country.description
-        NetworkManager.shared.fetchFlag(with: country) { result in
+        title = country.name?.official
+        self.view.backgroundColor = .systemCyan
+        flagImage.layer.masksToBounds = true
+        flagImage.layer.borderWidth = 1.5
+        flagImage.layer.borderColor = UIColor.white.cgColor
+        flagImage.layer.cornerRadius = 10
+//        берем картинку из кэша или из сети
+        flagImage.fetchImage(from: country.flags?.png ?? "")
+    }
+//    метод для присвоения картинки с помощью alamofire
+    private func fetchFlag() {
+        NetworkManager.shared.fetchFlagAlamoFire(with: country) { result in
             switch result {
+                
             case .success(let imageData):
-                DispatchQueue.main.async {
                     self.flagImage.image = UIImage(data: imageData)
-                }
             case .failure(let error):
                 print(error)
             }
