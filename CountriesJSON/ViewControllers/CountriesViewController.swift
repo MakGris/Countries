@@ -46,6 +46,7 @@ class CountriesViewController: UITableViewController {
 extension CountriesViewController {
     private func configureTableVIewController() {
         tableView.rowHeight = 80
+        tableView.separatorStyle = .none
         NetworkManager.shared.fetchCountries { result in
             switch result {
             case .success(let countries):

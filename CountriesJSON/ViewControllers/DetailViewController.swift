@@ -19,14 +19,23 @@ class DetailViewController: UIViewController {
 //MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDetailController()
+        fetchFlag()
+        tuneUI()
     }
 }
 
 //MARK: Private Methods
 extension DetailViewController {
-    private func configureDetailController() {
+    private func tuneUI() {
         descriptionLabel.text = country.description
+        title = country.name?.official
+        self.view.backgroundColor = .systemCyan
+        flagImage.layer.masksToBounds = true
+        flagImage.layer.borderWidth = 1.5
+        flagImage.layer.borderColor = UIColor.white.cgColor
+        flagImage.layer.cornerRadius = 10
+    }
+    private func fetchFlag() {
         NetworkManager.shared.fetchFlag(with: country) { result in
             switch result {
             case .success(let imageData):
