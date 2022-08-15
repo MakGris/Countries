@@ -15,11 +15,12 @@ class CountryDetailsViewController: UIViewController {
     
 //MARK: Public properties
     var country: Country!
+    var viewModel: CountryDetailsViewModelProtocol!
     
 //MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchFlag()
+        viewModel = CountryDetailsViewModel(country: country)
         tuneUI()
     }
 }
@@ -27,25 +28,15 @@ class CountryDetailsViewController: UIViewController {
 //MARK: Private Methods
 extension CountryDetailsViewController {
     private func tuneUI() {
-        descriptionLabel.text = country.description
-        title = country.name?.official
+        descriptionLabel.text = viewModel.description
+        title = viewModel.countryName
+        guard let imageData = viewModel.imageData else { return }
+        flagImage.image = UIImage(data: imageData)
         self.view.backgroundColor = .systemCyan
         flagImage.layer.masksToBounds = true
         flagImage.layer.borderWidth = 1.5
         flagImage.layer.borderColor = UIColor.white.cgColor
         flagImage.layer.cornerRadius = 10
-    }
-    private func fetchFlag() {
-        NetworkManager.shared.fetchFlag(with: country) { result in
-            switch result {
-            case .success(let imageData):
-                DispatchQueue.main.async {
-                    self.flagImage.image = UIImage(data: imageData)
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
     }
 }
 
