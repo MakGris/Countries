@@ -81,10 +81,10 @@
             </objects>
             <point key="canvasLocation" x="663.75" y="126.25"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Country Details View Controller-->
         <scene sceneID="mp4-90-IeM">
             <objects>
-                <viewController id="c3K-fD-rSM" customClass="DetailViewController" customModule="CountriesJSON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="c3K-fD-rSM" customClass="CountryDetailsViewController" customModule="CountriesJSON" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Caw-EE-blQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,7 +129,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yvA-Ji-XhU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MgA-eb-A7j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class CountryDetailsViewController: UIViewController {
     
 //MARK: IB Outlets
     @IBOutlet var flagImage: UIImageView!
@@ -25,7 +25,7 @@ class DetailViewController: UIViewController {
 }
 
 //MARK: Private Methods
-extension DetailViewController {
+extension CountryDetailsViewController {
     private func tuneUI() {
         descriptionLabel.text = country.description
         title = country.name?.official
