@@ -14,13 +14,11 @@ class CountryDetailsViewController: UIViewController {
     @IBOutlet var descriptionLabel: UILabel!
     
 //MARK: Public properties
-    var country: Country!
     var viewModel: CountryDetailsViewModelProtocol!
     
 //MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = CountryDetailsViewModel(country: country)
         tuneUI()
     }
 }

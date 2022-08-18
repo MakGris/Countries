@@ -1,32 +1,26 @@
 //
-//  CountryDetailsViewModel.swift
+//  CountryCellViewModel.swift
 //  CountriesJSON
 //
-//  Created by Maksim Grischenko on 15.08.2022.
+//  Created by Maksim Grischenko on 17.08.2022.
 //
 
 import Foundation
 
-protocol CountryDetailsViewModelProtocol {
+protocol CountryCellViewModelProtocol {
     var countryName: String { get }
     var imageData: Data? { get }
-    var description: String { get }
     
     init(country: Country)
 }
 
-class CountryDetailsViewModel: CountryDetailsViewModelProtocol {
+class CoountryCellViewModel: CountryCellViewModelProtocol {
     var countryName: String {
         country.name?.official ?? ""
     }
     
     var imageData: Data? {
-        
         ImageManager.shared.fetchFlagImage(from: URL(string: country.flags?.png ?? ""))
-    }
-    
-    var description: String {
-        country.description
     }
     
     private let country: Country
