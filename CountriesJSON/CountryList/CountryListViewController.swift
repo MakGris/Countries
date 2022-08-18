@@ -13,9 +13,7 @@ class CountryListViewController: UITableViewController {
     private var viewModel: CountryListViewModelProtocol! {
         didSet {
             viewModel.fetchCountries {
-                DispatchQueue.main.async {
                     self.tableView.reloadData()
-                }
             }
         }
     }

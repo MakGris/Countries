@@ -53,7 +53,9 @@ struct NetworkManager {
                 
             }
             if let imageData = try? Data(contentsOf: url){
-                completionHandler(.success(imageData))
+                DispatchQueue.main.async {
+                    completionHandler(.success(imageData))
+                }
             } else {
                 completionHandler(.failure(.invalidData))
                 return
