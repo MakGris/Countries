@@ -35,7 +35,7 @@ class CountriesViewController: UITableViewController {
      // MARK: - Navigation
      
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         guard let detailVC = segue.destination as? CountryDetailViewController else { return }
+         guard let detailVC = segue.destination as? CountryDetailsViewController else { return }
          guard let indexPath = tableView.indexPathForSelectedRow else { return }
          let country = fetchedCountries[indexPath.row]
          detailVC.country = country

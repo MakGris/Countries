@@ -80,10 +80,10 @@
             </objects>
             <point key="canvasLocation" x="663.75" y="126.25"/>
         </scene>
-        <!--Country Detail View Controller-->
+        <!--Country Details View Controller-->
         <scene sceneID="mp4-90-IeM">
             <objects>
-                <viewController id="c3K-fD-rSM" customClass="CountryDetailViewController" customModule="CountriesJSON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="c3K-fD-rSM" customClass="CountryDetailsViewController" customModule="CountriesJSON" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Caw-EE-blQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -51,11 +51,26 @@ struct NetworkManager {
                 
             }
             if let imageData = try? Data(contentsOf: url){
-                completionHandler(.success(imageData))
+                DispatchQueue.main.async {
+                    completionHandler(.success(imageData))
+                }
             } else {
                 completionHandler(.failure(.invalidData))
                 return
             }
         }
     }
+    
+    func fetchFlagData(with country: Country, completionHandler: @escaping(Data) -> Void ) -> Data? {
+        
+        DispatchQueue.global().async {
+            guard let url = URL(string: country.flags?.png ?? "") else { return }
+            if let imageData = try? Data(contentsOf: url){
+                DispatchQueue.main.async {
+                    completionHandler(imageData)
+                }
+            } else { return }
+        }
+    }
+    
 }
