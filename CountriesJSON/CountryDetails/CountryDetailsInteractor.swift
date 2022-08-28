@@ -27,9 +27,7 @@ class CountryDetailsInteractor: CountryDetailsInteractorInputProtocol {
     }
     
     func provideCountryDetails() {
-        NetworkManager.shared.fetchFlagData(with: country) { result in
-            let imageData = result
-        }
+        let imageData = ImageManager.shared.fetchImageData(with: URL(string: country.flags?.png ?? ""))
         let countryDetailsData = CountryDetailsData(
             countryName: country.name?.official ?? "",
             countryDescription: country.description,
