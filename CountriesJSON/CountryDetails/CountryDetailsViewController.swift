@@ -25,16 +25,11 @@ class CountryDetailsViewController: UIViewController {
     @IBOutlet var descriptionLabel: UILabel!
     
 //MARK: Public properties
-    var country: Country!
     var presenter: CountryDetailsViewOutputProtocol!
 
-//MARK: Private properties
-    private let configurator: CountryDetailsConfiguratorInputProtocol = CountryDetailsConfigurator()
-    
 //MARK: Override Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurator.configure(with: self, and: country)
         presenter.showDetails()
         tuneUI()
     }
@@ -50,7 +45,7 @@ extension CountryDetailsViewController {
         flagImage.layer.cornerRadius = 10
     }
 }
-//MARK: - Extension CountryDetailsViewProtocol
+//MARK: - Extension CountryDetailsViewInputProtocol
 
 extension CountryDetailsViewController: CountryDetailsViewInputProtocol {
     func displayCountryName(with title: String) {

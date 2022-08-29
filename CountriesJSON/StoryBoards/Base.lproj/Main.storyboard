@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yvA-Ji-XhU">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -7,27 +8,27 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Countries View Controller-->
+        <!--Countries List View Controller-->
         <scene sceneID="W4T-KZ-bUW">
             <objects>
-                <tableViewController id="thF-li-Gfv" customClass="CountriesViewController" customModule="CountriesJSON" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="thF-li-Gfv" customClass="CountriesListViewController" customModule="CountriesJSON" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="X5W-Zc-PpI">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="country" rowHeight="60" id="Kum-qE-0T9" customClass="CountryCell" customModule="CountriesJSON" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kum-qE-0T9" id="Ahf-Fk-rQR">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m54-0a-97y">
-                                            <rect key="frame" x="10" y="5" width="580" height="50"/>
+                                            <rect key="frame" x="10" y="5" width="394" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0O-b8-dJN">
-                                                    <rect key="frame" x="105" y="15" width="465" height="20.5"/>
+                                                    <rect key="frame" x="105" y="15" width="279" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -65,7 +66,6 @@
                                 <connections>
                                     <outlet property="countryNameLabel" destination="W0O-b8-dJN" id="Dr2-Zy-5en"/>
                                     <outlet property="flagImage" destination="oav-R3-vKi" id="nrp-tb-tOr"/>
-                                    <segue destination="c3K-fD-rSM" kind="show" id="VDU-Dc-i7N"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -75,6 +75,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="rHa-h2-10B"/>
+                    <connections>
+                        <segue destination="c3K-fD-rSM" kind="show" identifier="ShowDetails" id="HJT-Lp-HwG"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LlT-TF-B0i" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -85,17 +88,17 @@
             <objects>
                 <viewController id="c3K-fD-rSM" customClass="CountryDetailsViewController" customModule="CountriesJSON" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Caw-EE-blQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="md1-UI-luN">
-                                <rect key="frame" x="40" y="64" width="520" height="160"/>
+                                <rect key="frame" x="40" y="108" width="334" height="160"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="160" id="a31-KH-0lP"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N7M-cE-WJp">
-                                <rect key="frame" x="40" y="284" width="520" height="20.5"/>
+                                <rect key="frame" x="40" y="328" width="334" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -128,7 +131,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yvA-Ji-XhU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MgA-eb-A7j">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

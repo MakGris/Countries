@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CountryDetailsConfiguratorInputProtocol {
-    func configure(with view: CountryDetailsViewController, and course: Country)
+    func configure(with view: CountryDetailsViewController, and country: Country)
 }
 
 class CountryDetailsConfigurator: CountryDetailsConfiguratorInputProtocol {
