@@ -13,7 +13,7 @@
 		D583BD43283D11EC00096A87 /* CountryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D583BD42283D11EC00096A87 /* CountryCell.swift */; };
 		D59A3D0F283BA15200D74EBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59A3D0E283BA15200D74EBB /* AppDelegate.swift */; };
 		D59A3D11283BA15200D74EBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59A3D10283BA15200D74EBB /* SceneDelegate.swift */; };
-		D59A3D13283BA15200D74EBB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59A3D12283BA15200D74EBB /* DetailViewController.swift */; };
+		D59A3D13283BA15200D74EBB /* CountryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59A3D12283BA15200D74EBB /* CountryDetailsViewController.swift */; };
 		D59A3D16283BA15200D74EBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59A3D14283BA15200D74EBB /* Main.storyboard */; };
 		D59A3D18283BA15300D74EBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D59A3D17283BA15300D74EBB /* Assets.xcassets */; };
 		D59A3D1B283BA15300D74EBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D59A3D19283BA15300D74EBB /* LaunchScreen.storyboard */; };
@@ -28,7 +28,7 @@
 		D59A3D0B283BA15200D74EBB /* CountriesJSON.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountriesJSON.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59A3D0E283BA15200D74EBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D59A3D10283BA15200D74EBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D59A3D12283BA15200D74EBB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D59A3D12283BA15200D74EBB /* CountryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewController.swift; sourceTree = "<group>"; };
 		D59A3D15283BA15200D74EBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D59A3D17283BA15300D74EBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D59A3D1A283BA15300D74EBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -75,7 +75,6 @@
 			isa = PBXGroup;
 			children = (
 				D54AF899283BAA4900514BE7 /* CountriesViewController.swift */,
-				D59A3D12283BA15200D74EBB /* DetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -126,6 +125,7 @@
 		D59A3D0D283BA15200D74EBB /* CountriesJSON */ = {
 			isa = PBXGroup;
 			children = (
+				D5BD018428CA0E3F00FEB17A /* CountryDetails */,
 				D54AF89F283BABE400514BE7 /* App */,
 				D511E6D0283F277100A5FA38 /* Network */,
 				D511E6CF283DE0DF00A5FA38 /* Model */,
@@ -136,6 +136,14 @@
 				D54AF89B283BAB9A00514BE7 /* .gitignore */,
 			);
 			path = CountriesJSON;
+			sourceTree = "<group>";
+		};
+		D5BD018428CA0E3F00FEB17A /* CountryDetails */ = {
+			isa = PBXGroup;
+			children = (
+				D59A3D12283BA15200D74EBB /* CountryDetailsViewController.swift */,
+			);
+			path = CountryDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D59A3D13283BA15200D74EBB /* DetailViewController.swift in Sources */,
+				D59A3D13283BA15200D74EBB /* CountryDetailsViewController.swift in Sources */,
 				D59A3D0F283BA15200D74EBB /* AppDelegate.swift in Sources */,
 				D583BD43283D11EC00096A87 /* CountryCell.swift in Sources */,
 				D5C7C84D283E46B5008D5D2C /* NetworkManager.swift in Sources */,
