@@ -84,10 +84,17 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		D54AF89D283BABC000514BE7 /* ViewControllers */ = {
+		D53CA77628D8885500EF7991 /* CountriesList */ = {
 			isa = PBXGroup;
 			children = (
 				D54AF899283BAA4900514BE7 /* CountriesViewController.swift */,
+			);
+			path = CountriesList;
+			sourceTree = "<group>";
+		};
+		D54AF89D283BABC000514BE7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -139,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BD018428CA0E3F00FEB17A /* CountryDetails */,
+				D53CA77628D8885500EF7991 /* CountriesList */,
 				D54AF89F283BABE400514BE7 /* App */,
 				D511E6D0283F277100A5FA38 /* Network */,
 				D511E6CF283DE0DF00A5FA38 /* Model */,
@@ -154,12 +162,12 @@
 		D5BD018428CA0E3F00FEB17A /* CountryDetails */ = {
 			isa = PBXGroup;
 			children = (
-				D59A3D12283BA15200D74EBB /* CountryDetailsViewController.swift */,
-				D5BD018528CA106700FEB17A /* CountryDetailsModels.swift */,
-				D5BD018728CA14E900FEB17A /* CountryDetailsInteractor.swift */,
 				D5BD018B28CA1D4F00FEB17A /* CountryDetailsPresenter.swift */,
 				D5BD018D28CA206F00FEB17A /* CountryDetailsWorker.swift */,
 				D5BD018F28CB531100FEB17A /* CountryDetailsRouter.swift */,
+				D5BD018528CA106700FEB17A /* CountryDetailsModels.swift */,
+				D59A3D12283BA15200D74EBB /* CountryDetailsViewController.swift */,
+				D5BD018728CA14E900FEB17A /* CountryDetailsInteractor.swift */,
 			);
 			path = CountryDetails;
 			sourceTree = "<group>";
