@@ -6,7 +6,9 @@
 //
 
 import UIKit
-
+protocol CountriesListDisplayLogic: AnyObject {
+    func displayCourses(viewModel: CountriesList.ShowCountries.ViewModel)
+}
 class CountriesViewController: UITableViewController {
     
 //    MARK: Private Properties
@@ -43,7 +45,14 @@ class CountriesViewController: UITableViewController {
 }
 
 //MARK: Private Methods
-extension CountriesViewController {
+extension CountriesViewController: CountriesListDisplayLogic {
+    func displayCourses(viewModel: CountriesList.ShowCountries.ViewModel) {
+        <#code#>
+    }
+    
+    
+    
+    
     private func configureTableVIewController() {
         tableView.rowHeight = 80
         tableView.separatorStyle = .none

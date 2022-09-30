@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D5121FC528E706FB0052C9E5 /* CountriesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5121FC428E706FB0052C9E5 /* CountriesListInteractor.swift */; };
+		D5121FC728E70C950052C9E5 /* CountriesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5121FC628E70C950052C9E5 /* CountriesListPresenter.swift */; };
 		D53CA77828E5B05200EF7991 /* CountriesListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CA77728E5B05200EF7991 /* CountriesListModels.swift */; };
 		D54AF89A283BAA4900514BE7 /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54AF899283BAA4900514BE7 /* CountriesViewController.swift */; };
 		D54AF89C283BAB9A00514BE7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D54AF89B283BAB9A00514BE7 /* .gitignore */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D5121FC428E706FB0052C9E5 /* CountriesListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListInteractor.swift; sourceTree = "<group>"; };
+		D5121FC628E70C950052C9E5 /* CountriesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListPresenter.swift; sourceTree = "<group>"; };
 		D53CA77728E5B05200EF7991 /* CountriesListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListModels.swift; sourceTree = "<group>"; };
 		D54AF899283BAA4900514BE7 /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		D54AF89B283BAB9A00514BE7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
@@ -91,6 +95,8 @@
 			children = (
 				D54AF899283BAA4900514BE7 /* CountriesViewController.swift */,
 				D53CA77728E5B05200EF7991 /* CountriesListModels.swift */,
+				D5121FC428E706FB0052C9E5 /* CountriesListInteractor.swift */,
+				D5121FC628E70C950052C9E5 /* CountriesListPresenter.swift */,
 			);
 			path = CountriesList;
 			sourceTree = "<group>";
@@ -253,6 +259,8 @@
 				D59A3D0F283BA15200D74EBB /* AppDelegate.swift in Sources */,
 				D53CA77828E5B05200EF7991 /* CountriesListModels.swift in Sources */,
 				D5BD019028CB531100FEB17A /* CountryDetailsRouter.swift in Sources */,
+				D5121FC528E706FB0052C9E5 /* CountriesListInteractor.swift in Sources */,
+				D5121FC728E70C950052C9E5 /* CountriesListPresenter.swift in Sources */,
 				D583BD43283D11EC00096A87 /* CountryCell.swift in Sources */,
 				D5BD018628CA106700FEB17A /* CountryDetailsModels.swift in Sources */,
 				D5BD018828CA14E900FEB17A /* CountryDetailsInteractor.swift in Sources */,
