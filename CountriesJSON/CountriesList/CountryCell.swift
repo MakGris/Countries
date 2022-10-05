@@ -25,11 +25,28 @@ class CountryCell: UITableViewCell, CellModelRepresentable {
     }
     
 //MARK: Methods
+//    func updateView() {
+//        guard let viewModel = viewModel as? CountryCellViewModel else { return }
+//        countryNameLabel.text = viewModel.name
+//        if let imageData = ImageManager.shared.fetchImageData(from: URL(string: viewModel.imageURL)) {
+//            flagImage.image = UIImage(data: imageData)
+//        }
+//    }
+    
     func updateView() {
         guard let viewModel = viewModel as? CountryCellViewModel else { return }
         countryNameLabel.text = viewModel.name
-        if let imageData = ImageManager.shared.fetchImageData(from: URL(string: viewModel.imageURL)) {
-            flagImage.image = UIImage(data: imageData)
+        NetworkManager.shared.fetchFlag(from: URL(string: viewModel.imageURL)) { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    self.flagImage.image = UIImage(data: data)
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
+        
+        
     }
 }

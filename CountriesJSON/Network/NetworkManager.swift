@@ -43,9 +43,9 @@ struct NetworkManager {
 
         }.resume()
     }
-    func fetchFlag(with country: Country, completionHandler: @escaping(Result <Data, NetworkError>) -> Void ) {
+    func fetchFlag(from url: URL?, completionHandler: @escaping(Result <Data, NetworkError>) -> Void ) {
         DispatchQueue.global().async {
-            guard let url = URL(string: country.flags?.png ?? "") else {
+            guard let url = url else {
                 completionHandler(.failure(.badURL))
                 return
                 

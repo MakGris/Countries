@@ -12,20 +12,18 @@ class ImageManager {
     
     private init() {}
     
-    func fetchFlagData(from url: URL?, completion: @escaping (Data) -> Void) {
-        DispatchQueue.main.async {
-            guard let url = url else { return }
-            if let imageData = try? Data(contentsOf: url) {
-                completion(imageData)
-            } else { return }
-    }
-    }
+//    func fetchFlagData(from url: URL?, completion: @escaping (Data) -> Void) {
+//        DispatchQueue.global.async {
+//            guard let url = url else { return }
+//            if let imageData = try? Data(contentsOf: url) {
+//                completion(imageData)
+//            } else { return }
+//        }
+//    }
     func fetchImageData(from url: URL?) -> Data? {
-        var flagData = Data()
-        fetchFlagData(from: url) { data in
-            flagData = data
-        }
-        return flagData
+        guard let url = url else { return nil }
+        guard let imageData = try? Data(contentsOf: url) else { return nil }
+        return imageData
+        
     }
-
 }
