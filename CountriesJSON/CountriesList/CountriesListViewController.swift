@@ -9,20 +9,28 @@ import UIKit
 protocol CountriesListDisplayLogic: AnyObject {
     func displayCourses(viewModel: CountriesList.ShowCountries.ViewModel)
 }
-class CountriesViewController: UITableViewController {
+class CountriesListViewController: UITableViewController {
     
 // MARK: Public Properties
+    
     var interactor: CountriesListBusinessLogic?
+    var router: (NSObjectProtocol & CountriesListRoutingLogic & CountriesListDataPassing)?
     
 //    MARK: Private Properties
+    
     private var rows: [CellIdentifiable] = []
-    private var fetchedCountries: [Country] = []
     
 //    MARK: Override Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        configureTableVIewController()
-        
+        CountriesListConfigurator.shared.configure(with: self)
+        getCountries()
+    }
+//    MARK: Private Methods
+    
+    private func getCountries() {
+        interactor?.fetchCountries()
     }
     
     // MARK: - UITableViewDataSource
@@ -40,6 +48,7 @@ class CountriesViewController: UITableViewController {
     }
     
 //    MARK: UITableViewDelegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -50,38 +59,22 @@ class CountriesViewController: UITableViewController {
      // MARK: - Navigation
      
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         guard let detailVC = segue.destination as? CountryDetailsViewController else { return }
-         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-         let country = fetchedCountries[indexPath.row]
-//         detailVC.country = country
+         if let scene = segue.identifier {
+             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+             if let router = router, router.responds(to: selector) {
+                 router.perform(selector, with: segue)
+             }
+         }
      }
 }
 
 //MARK: Countries List Display Logic
-extension CountriesViewController: CountriesListDisplayLogic {
+
+extension CountriesListViewController: CountriesListDisplayLogic {
     func displayCourses(viewModel: CountriesList.ShowCountries.ViewModel) {
         rows = viewModel.rows
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-    
-    
-    
-    
-//    private func configureTableVIewController() {
-//        tableView.rowHeight = 80
-//        tableView.separatorStyle = .none
-//        NetworkManager.shared.fetchCountries { result in
-//            switch result {
-//            case .success(let countries):
-//                self.fetchedCountries = countries
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            case .failure(let error):
-//                print(error)
-//            }
-//        }
-//    }
 }
