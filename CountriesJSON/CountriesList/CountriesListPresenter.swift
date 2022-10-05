@@ -6,14 +6,14 @@
 //
 
 protocol CountriesListPresentationLogic {
-    func presentCourses(response: CountriesList.ShowCountries.Response)
+    func presentCountries(response: CountriesList.ShowCountries.Response)
 }
 
 class CountriesListPresenter: CountriesListPresentationLogic {
     
     weak var viewController: CountriesListDisplayLogic?
     
-    func presentCourses(response: CountriesList.ShowCountries.Response) {
+    func presentCountries(response: CountriesList.ShowCountries.Response) {
         var rows: [CountryCellViewModel] = []
         response.countries.forEach { country in
             rows.append(CountryCellViewModel(country: country))

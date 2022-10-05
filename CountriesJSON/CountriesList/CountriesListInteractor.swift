@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CountriesListBusinessLogic {
-    func fetchCourses()
+    func fetchCountries()
 }
 
 protocol CountriesListDataStore {
@@ -19,14 +19,14 @@ class CountriesListInteractor: CountriesListBusinessLogic, CountriesListDataStor
     var presenter: CountriesListPresentationLogic?
     var countries: [Country] = []
     
-    func fetchCourses() {
+    func fetchCountries() {
         NetworkManager.shared.fetchCountries { [self] result in
             switch result {
                 
             case .success(let fetchedCountries):
                 self.countries = fetchedCountries
                 let response = CountriesList.ShowCountries.Response(countries: countries)
-                self.presenter?.presentCourses(response: response)
+                self.presenter?.presentCountries(response: response)
                 
             case .failure(let error):
                 print(error)

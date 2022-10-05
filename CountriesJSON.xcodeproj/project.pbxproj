@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D5121FC528E706FB0052C9E5 /* CountriesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5121FC428E706FB0052C9E5 /* CountriesListInteractor.swift */; };
 		D5121FC728E70C950052C9E5 /* CountriesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5121FC628E70C950052C9E5 /* CountriesListPresenter.swift */; };
+		D5121FC928EB02460052C9E5 /* CountriesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5121FC828EB02460052C9E5 /* CountriesListRouter.swift */; };
 		D53CA77828E5B05200EF7991 /* CountriesListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53CA77728E5B05200EF7991 /* CountriesListModels.swift */; };
 		D54AF89A283BAA4900514BE7 /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54AF899283BAA4900514BE7 /* CountriesViewController.swift */; };
 		D54AF89C283BAB9A00514BE7 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = D54AF89B283BAB9A00514BE7 /* .gitignore */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		D5121FC428E706FB0052C9E5 /* CountriesListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListInteractor.swift; sourceTree = "<group>"; };
 		D5121FC628E70C950052C9E5 /* CountriesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListPresenter.swift; sourceTree = "<group>"; };
+		D5121FC828EB02460052C9E5 /* CountriesListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListRouter.swift; sourceTree = "<group>"; };
 		D53CA77728E5B05200EF7991 /* CountriesListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesListModels.swift; sourceTree = "<group>"; };
 		D54AF899283BAA4900514BE7 /* CountriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
 		D54AF89B283BAB9A00514BE7 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
@@ -65,14 +67,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D511E6CE283DE0CF00A5FA38 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D583BD42283D11EC00096A87 /* CountryCell.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		D511E6CF283DE0DF00A5FA38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,19 +87,14 @@
 		D53CA77628D8885500EF7991 /* CountriesList */ = {
 			isa = PBXGroup;
 			children = (
+				D583BD42283D11EC00096A87 /* CountryCell.swift */,
 				D54AF899283BAA4900514BE7 /* CountriesViewController.swift */,
 				D53CA77728E5B05200EF7991 /* CountriesListModels.swift */,
 				D5121FC428E706FB0052C9E5 /* CountriesListInteractor.swift */,
 				D5121FC628E70C950052C9E5 /* CountriesListPresenter.swift */,
+				D5121FC828EB02460052C9E5 /* CountriesListRouter.swift */,
 			);
 			path = CountriesList;
-			sourceTree = "<group>";
-		};
-		D54AF89D283BABC000514BE7 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D54AF89E283BABCF00514BE7 /* StoryBoards */ = {
@@ -159,8 +148,6 @@
 				D54AF89F283BABE400514BE7 /* App */,
 				D511E6D0283F277100A5FA38 /* Network */,
 				D511E6CF283DE0DF00A5FA38 /* Model */,
-				D511E6CE283DE0CF00A5FA38 /* Views */,
-				D54AF89D283BABC000514BE7 /* ViewControllers */,
 				D54AF89E283BABCF00514BE7 /* StoryBoards */,
 				D54AF8A0283BAC1000514BE7 /* Resources */,
 				D54AF89B283BAB9A00514BE7 /* .gitignore */,
@@ -262,6 +249,7 @@
 				D5121FC528E706FB0052C9E5 /* CountriesListInteractor.swift in Sources */,
 				D5121FC728E70C950052C9E5 /* CountriesListPresenter.swift in Sources */,
 				D583BD43283D11EC00096A87 /* CountryCell.swift in Sources */,
+				D5121FC928EB02460052C9E5 /* CountriesListRouter.swift in Sources */,
 				D5BD018628CA106700FEB17A /* CountryDetailsModels.swift in Sources */,
 				D5BD018828CA14E900FEB17A /* CountryDetailsInteractor.swift in Sources */,
 				D5C7C84D283E46B5008D5D2C /* NetworkManager.swift in Sources */,

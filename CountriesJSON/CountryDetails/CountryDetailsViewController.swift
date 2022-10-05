@@ -18,7 +18,6 @@ class CountryDetailsViewController: UIViewController {
     @IBOutlet var descriptionLabel: UILabel!
     
 //MARK: Public properties
-    var country: Country!
     var interactor: CountryDetailsBusinessLogic?
     var router: (NSObjectProtocol & CountryDetailsRoutingLogic & CountryDetailsDataPassing)?
     
